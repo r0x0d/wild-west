@@ -600,4 +600,6 @@ shape = SubResource("CapsuleShape2D_v2vgj")
 sprite_frames = SubResource("SpriteFrames_r6w0b")
 animation = &"attack_side"
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
