@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://dnjd3b2wtm8vh"]
+[gd_scene load_steps=91 format=3 uid="uid://dnjd3b2wtm8vh"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_64jfu"]
 [ext_resource type="Texture2D" uid="uid://d0djok8y1fmuk" path="res://Assets/Player/Player Front Sheet.png" id="2_x15j2"]
@@ -7,9 +7,12 @@
 [ext_resource type="Script" path="res://Scripts/GUI/Health.gd" id="5_2u0ky"]
 [ext_resource type="Script" path="res://Scripts/GUI/Stamina.gd" id="6_fpgge"]
 [ext_resource type="Texture2D" uid="uid://b6wahuhdh6mbg" path="res://Assets/Icons/shard_01i.png" id="7_lwmsg"]
+[ext_resource type="Script" path="res://Scripts/GUI/AmmoAmount.gd" id="7_q2vsn"]
 [ext_resource type="FontFile" uid="uid://lxeddhw7kru1" path="res://Assets/Font/ARCADECLASSIC.TTF" id="8_488lc"]
 [ext_resource type="Texture2D" uid="uid://c4xvnv66nrhov" path="res://Assets/Icons/potion_02c.png" id="9_ulpbh"]
+[ext_resource type="Script" path="res://Scripts/GUI/HealthAmount.gd" id="10_3t6fu"]
 [ext_resource type="Texture2D" uid="uid://c165g8lnh74xn" path="res://Assets/Icons/potion_02b.png" id="10_ihdj6"]
+[ext_resource type="Script" path="res://Scripts/GUI/StaminaAmount.gd" id="12_1ojuf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v2vgj"]
 
@@ -597,6 +600,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(160, 90)
 script = ExtResource("1_64jfu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -670,6 +674,7 @@ offset_top = 8.0
 offset_right = 45.0
 offset_bottom = 28.0
 color = Color(0.227451, 0.223529, 0.207843, 0.415686)
+script = ExtResource("7_q2vsn")
 
 [node name="Icon" type="Sprite2D" parent="UI/AmmoAmount"]
 position = Vector2(10, 10)
@@ -699,6 +704,7 @@ offset_top = 8.0
 offset_right = 90.0
 offset_bottom = 28.0
 color = Color(0.227451, 0.223529, 0.207843, 0.415686)
+script = ExtResource("10_3t6fu")
 
 [node name="Icon" type="Sprite2D" parent="UI/HealthAmount"]
 position = Vector2(10, 10)
@@ -728,6 +734,7 @@ offset_top = 8.0
 offset_right = 135.0
 offset_bottom = 28.0
 color = Color(0.227451, 0.223529, 0.207843, 0.415686)
+script = ExtResource("12_1ojuf")
 
 [node name="Icon" type="Sprite2D" parent="UI/StaminaAmount"]
 position = Vector2(10, 10)
