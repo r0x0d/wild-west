@@ -1,9 +1,11 @@
-[gd_scene load_steps=82 format=3 uid="uid://dnjd3b2wtm8vh"]
+[gd_scene load_steps=84 format=3 uid="uid://dnjd3b2wtm8vh"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_64jfu"]
 [ext_resource type="Texture2D" uid="uid://d0djok8y1fmuk" path="res://Assets/Player/Player Front Sheet.png" id="2_x15j2"]
 [ext_resource type="Texture2D" uid="uid://bkn51u0pped7v" path="res://Assets/Player/Player Side Sheet.png" id="3_kx3jt"]
 [ext_resource type="Texture2D" uid="uid://d2j6cf5ctielj" path="res://Assets/Player/Player Back Sheet.png" id="4_kh18a"]
+[ext_resource type="Script" path="res://Scripts/GUI/Health.gd" id="5_2u0ky"]
+[ext_resource type="Script" path="res://Scripts/GUI/Stamina.gd" id="6_fpgge"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v2vgj"]
 
@@ -601,5 +603,61 @@ sprite_frames = SubResource("SpriteFrames_r6w0b")
 animation = &"attack_side"
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ColorRect" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -25.0
+offset_right = 105.0
+offset_bottom = -15.0
+grow_vertical = 0
+color = Color(0.227451, 0.223529, 0.207843, 0.415686)
+script = ExtResource("5_2u0ky")
+
+[node name="Value" type="ColorRect" parent="UI/HealthBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = -4.0
+offset_right = 49.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.643137, 0.870588, 0.47451, 1)
+
+[node name="StaminaBar" type="ColorRect" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -15.0
+offset_right = 105.0
+offset_bottom = -5.0
+grow_vertical = 0
+color = Color(0.227451, 0.223529, 0.207843, 0.415686)
+script = ExtResource("6_fpgge")
+
+[node name="Value" type="ColorRect" parent="UI/StaminaBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = -4.0
+offset_right = 49.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.215686, 0.486275, 0.619608, 1)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

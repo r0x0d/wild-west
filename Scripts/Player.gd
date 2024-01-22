@@ -1,17 +1,59 @@
 extends CharacterBody2D
 
 @export var speed = 50
+
+# Node references
 @onready var animation_sprite = $AnimatedSprite2D
+@onready var health_bar = $UI/HealthBar
+@onready var stamina_bar = $UI/StaminaBar
 
 var is_attacking = false
 var new_direction: Vector2 = Vector2(0, 1)
 var animation
 
+# UI Variables
+var health = 100
+var max_health = health
+var regen_health = 1
+var stamina = 100
+var max_stamina = stamina
+var regen_stamina = 5
+
+# Custom signals
+signal health_updated
+signal stamina_updated
+
+# We use the _ready() function whenever we need to set or initialize code that
+# needs to run right after a node and its children are fully added to the
+# scene. This function will only execute once before any _process() or
+# _physics_process() functions.
+func _ready():
+	# This means each time there is a change in our health value, the player
+	# script will emit the signal, and our healthbar will update its value.
+	health_updated.connect(health_bar.update_health_ui)
+	stamina_updated.connect(stamina_bar.update_stamina_ui)
+
+# Called every time a frame is drawn (60 times a second)
+func _process(delta):
+	# Calculate health & stamina, and if the updated_health is different from
+	# the current health, update the value of the variable by "regenerating"
+	# it.
+	var updated_health = min(health + regen_health * delta, max_health)
+	if updated_health != health:
+		health = updated_health
+		health_updated.emit(health, max_health)
+
+	var updated_stamina = min(stamina + regen_stamina * delta, max_stamina)
+	if updated_stamina != stamina:
+		stamina = updated_stamina
+		stamina_updated.emit(stamina, max_health)
+
+
 func _input(event):
 	# Input event for our attacking
 	if event.is_action_pressed("ui_attack"):
 		is_attacking = true
-		var animation = "attack_" + returned_direction(new_direction)
+		animation = "attack_" + returned_direction(new_direction)
 		animation_sprite.play(animation)
 
 func _physics_process(delta):
@@ -27,7 +69,10 @@ func _physics_process(delta):
 	
 	# Sprinting
 	if Input.is_action_pressed("ui_sprint"):
-		speed = 100
+		if stamina >= 25:
+			speed = 100
+			stamina = stamina - 5
+			stamina_updated.emit(stamina, max_stamina)
 	elif Input.is_action_just_released("ui_sprint"):
 		speed = 50
 	
