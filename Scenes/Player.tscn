@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://dnjd3b2wtm8vh"]
+[gd_scene load_steps=88 format=3 uid="uid://dnjd3b2wtm8vh"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_64jfu"]
 [ext_resource type="Texture2D" uid="uid://d0djok8y1fmuk" path="res://Assets/Player/Player Front Sheet.png" id="2_x15j2"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://d2j6cf5ctielj" path="res://Assets/Player/Player Back Sheet.png" id="4_kh18a"]
 [ext_resource type="Script" path="res://Scripts/GUI/Health.gd" id="5_2u0ky"]
 [ext_resource type="Script" path="res://Scripts/GUI/Stamina.gd" id="6_fpgge"]
+[ext_resource type="Texture2D" uid="uid://b6wahuhdh6mbg" path="res://Assets/Icons/shard_01i.png" id="7_lwmsg"]
+[ext_resource type="FontFile" uid="uid://lxeddhw7kru1" path="res://Assets/Font/ARCADECLASSIC.TTF" id="8_488lc"]
+[ext_resource type="Texture2D" uid="uid://c4xvnv66nrhov" path="res://Assets/Icons/potion_02c.png" id="9_ulpbh"]
+[ext_resource type="Texture2D" uid="uid://c165g8lnh74xn" path="res://Assets/Icons/potion_02b.png" id="10_ihdj6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v2vgj"]
 
@@ -659,5 +663,92 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.215686, 0.486275, 0.619608, 1)
+
+[node name="AmmoAmount" type="ColorRect" parent="UI"]
+offset_left = 5.0
+offset_top = 8.0
+offset_right = 45.0
+offset_bottom = 28.0
+color = Color(0.227451, 0.223529, 0.207843, 0.415686)
+
+[node name="Icon" type="Sprite2D" parent="UI/AmmoAmount"]
+position = Vector2(10, 10)
+texture = ExtResource("7_lwmsg")
+
+[node name="Value" type="Label" parent="UI/AmmoAmount"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -13.0
+offset_bottom = 13.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_488lc")
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthAmount" type="ColorRect" parent="UI"]
+offset_left = 50.0
+offset_top = 8.0
+offset_right = 90.0
+offset_bottom = 28.0
+color = Color(0.227451, 0.223529, 0.207843, 0.415686)
+
+[node name="Icon" type="Sprite2D" parent="UI/HealthAmount"]
+position = Vector2(10, 10)
+texture = ExtResource("9_ulpbh")
+
+[node name="Value" type="Label" parent="UI/HealthAmount"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -13.0
+offset_bottom = 13.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_488lc")
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StaminaAmount" type="ColorRect" parent="UI"]
+offset_left = 95.0
+offset_top = 8.0
+offset_right = 135.0
+offset_bottom = 28.0
+color = Color(0.227451, 0.223529, 0.207843, 0.415686)
+
+[node name="Icon" type="Sprite2D" parent="UI/StaminaAmount"]
+position = Vector2(10, 10)
+texture = ExtResource("10_ihdj6")
+
+[node name="Value" type="Label" parent="UI/StaminaAmount"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -13.0
+offset_bottom = 13.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_488lc")
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
